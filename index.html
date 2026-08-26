@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#fff8ec">
+  <meta name="description" content="Smile Shirt เสื้อผ้ามือสองคัดสภาพ สดใส มีสไตล์ และมีเพียงชิ้นเดียว">
+  <title>Smile Shirt | เสื้อผ้ามือสองคัดสภาพ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Smile Shirt หน้าแรก">
+      <span class="brand-mark">SMILE<br><em>SHIRT</em></span>
+      <span class="brand-line">GOOD STYLE<br>SECOND CHANCES</span>
+    </a>
+    <button id="cartButton" class="cart-button" type="button" aria-label="เปิดตะกร้า">
+      <span>ตะกร้า</span><b id="cartCount">0</b>
+    </button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">NEW FASHION DROP</p>
+        <h1>หยิบลุคที่ใช่<br><span>ใส่แล้วเป็นคุณ</span></h1>
+        <p>เสื้อผ้ามือสองคัดสภาพ แต่ละชิ้นมีเรื่องราวและมีเพียงชิ้นเดียวในร้าน</p>
+        <a class="primary-link" href="#products">เลือกสินค้าตอนนี้</a>
+      </div>
+      <div class="hero-media">
+        <img src="assets/shop-shirts.jpeg" alt="เสื้อเชิ้ตวินเทจจากร้าน Smile Shirt">
+        <span class="hero-chip chip-yellow">คัดสภาพทุกตัว</span>
+        <span class="hero-chip chip-mint">เริ่มต้น ฿120</span>
+      </div>
+    </section>
+
+    <section id="products" class="products-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">SHOP THE DROP</p><h2>สินค้าแนะนำ</h2></div>
+        <p>แตะสินค้าเพื่อดูรูปและวิดีโอ</p>
+      </div>
+      <div id="productGrid" class="product-grid" aria-live="polite"></div>
+    </section>
+
+    <section class="pickup-section">
+      <div>
+        <p class="eyebrow light">STORE PICKUP</p>
+        <h2>รับสินค้าที่หน้าร้านได้</h2>
+        <p id="storeAddress">ตลาดช่างชุ่ย ถนนสิรินธร แขวงบางพลัด เขตบางพลัด กรุงเทพมหานคร</p>
+        <div class="shipping-tags"><span>ขนส่งเอกชน</span><span>ไปรษณีย์ไทย</span><span>รับหน้าร้าน</span></div>
+      </div>
+      <div id="routeVideoBox" class="route-video empty">
+        <div><b>วิดีโอแนะนำทางมาร้าน</b><small>เพิ่มลิงก์ใน Google Sheets ได้ภายหลัง</small></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <b>SMILE SHIRT</b>
+    <span>เสื้อผ้ามือสองคัดสภาพ • ตลาดช่างชุ่ย</span>
+  </footer>
+
+  <div id="productModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="product"></div>
+    <article class="product-modal-card" role="dialog" aria-modal="true" aria-labelledby="modalProductName">
+      <button class="close-button" data-close="product" aria-label="ปิด">×</button>
+      <div id="modalMedia" class="modal-media"></div>
+      <div class="modal-product-info">
+        <p id="modalProductTag" class="eyebrow"></p>
+        <h2 id="modalProductName"></h2>
+        <p id="modalProductDescription"></p>
+        <div class="price-row"><strong id="modalProductPrice"></strong><span id="modalStock"></span></div>
+        <button id="modalAddButton" class="action-button" type="button">เพิ่มลงตะกร้า</button>
+      </div>
+    </article>
+  </div>
+
+  <aside id="cartDrawer" class="drawer" aria-hidden="true">
+    <div class="drawer-backdrop" data-close="cart"></div>
+    <div class="drawer-panel">
+      <div class="drawer-head"><h2>ตะกร้าของฉัน</h2><button class="close-button inline" data-close="cart">×</button></div>
+      <div id="cartItems" class="cart-items"></div>
+      <div id="cartSummary" class="cart-summary"></div>
+    </div>
+  </aside>
+
+  <div id="checkoutModal" class="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="checkout"></div>
+    <article class="checkout-card" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+      <button class="close-button" data-close="checkout">×</button>
+      <div id="checkoutFormView">
+        <p class="eyebrow">SECURE ORDER</p>
+        <h2 id="checkoutTitle">ข้อมูลสั่งซื้อ</h2>
+        <div class="deposit-banner"><span>ยอดมัดจำ 50%</span><strong id="checkoutDeposit">฿0</strong></div>
+        <form id="checkoutForm">
+          <div class="form-grid">
+            <label>ชื่อผู้รับ<input name="customerName" required autocomplete="name" placeholder="ชื่อ-นามสกุล"></label>
+            <label>เบอร์โทร<input name="phone" required inputmode="tel" autocomplete="tel" placeholder="08x-xxx-xxxx"></label>
+          </div>
+          <label>LINE ID (ถ้ามี)<input name="lineId" placeholder="LINE ID"></label>
+          <label>วิธีรับสินค้า
+            <select name="shippingMethod" required>
+              <option value="">เลือกวิธีรับสินค้า</option>
+              <option value="ขนส่งเอกชน">ขนส่งเอกชน</option>
+              <option value="ไปรษณีย์ไทย">ไปรษณีย์ไทย</option>
+              <option value="รับหน้าร้าน">รับที่หน้าร้านตลาดช่างชุ่ย</option>
+            </select>
+          </label>
+          <label>ที่อยู่จัดส่ง / หมายเหตุรับหน้าร้าน<textarea name="address" required rows="3" placeholder="กรอกที่อยู่ให้ครบ หรือระบุว่ารับหน้าร้าน"></textarea></label>
+          <div class="payment-choice">
+            <label><input type="radio" name="paymentMethod" value="เลขบัญชี" checked><span>เลขบัญชี</span></label>
+            <label><input type="radio" name="paymentMethod" value="QR Code"><span>QR Code</span></label>
+          </div>
+          <div id="paymentInfo" class="payment-info"></div>
+          <label class="file-field">แนบสลิปหรือหลักฐานการโอน
+            <input id="slipInput" name="slip" type="file" required accept="image/jpeg,image/png,image/webp,application/pdf">
+            <span><b>แตะเพื่อเลือกไฟล์</b><small id="fileName">JPG, PNG, WEBP หรือ PDF ไม่เกิน 8 MB</small></span>
+          </label>
+          <label class="honeypot" aria-hidden="true">เว็บไซต์<input name="website" tabindex="-1" autocomplete="off"></label>
+          <p id="formError" class="form-error" role="alert"></p>
+          <button id="submitOrderButton" class="action-button" type="submit">ยืนยันและส่งหลักฐาน</button>
+        </form>
+      </div>
+      <div id="orderSuccess" class="order-success" hidden>
+        <div class="success-icon">✓</div>
+        <h2>ส่งออร์เดอร์เรียบร้อย</h2>
+        <p>ร้านจะตรวจสอบหลักฐานการชำระเงินของคุณ</p>
+        <div class="order-number"><small>หมายเลขออร์เดอร์</small><strong id="successOrderNumber"></strong></div>
+        <p>กรุณาบันทึกหมายเลขนี้ไว้สำหรับติดตามและรับสินค้า</p>
+        <button class="action-button" data-close="checkout">เสร็จเรียบร้อย</button>
+      </div>
+    </article>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="config.js"></script>
+  <script src="app.js" defer></script>
+</body>
+</html>
