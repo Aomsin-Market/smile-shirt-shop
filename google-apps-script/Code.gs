@@ -77,7 +77,7 @@ function getSettings_() {
     promoQualityText: map['ข้อความป้ายคุณภาพ'] || 'คัดคุณภาพทุกตัว',
     promoPriceText: map['ข้อความป้ายราคาโปรโมชั่น'] || 'เริ่มต้น ฿120',
     shippingMinimum: number_(map['ค่าขนส่งขั้นต่ำ']) || 60,
-    codRate: number_(map['อัตราค่าบริการเก็บเงินปลายทาง']) || 0.04,
+    codRate: percent_(map['อัตราค่าบริการเก็บเงินปลายทาง']) || 0.04,
     shippingRates: getShippingRates_()
   };
 }
@@ -195,6 +195,7 @@ function cleanUrl_(value) {
 function clean_(value) { return String(value || '').trim().replace(/[<>]/g, ''); }
 function validateText_(value, message, max) { const text = clean_(value); if (!text || text.length > max) throw new Error(message); }
 function number_(value) { return Number(String(value || '').replace(/[^0-9.-]/g, '')) || 0; }
+function percent_(value) { const text = String(value || '').trim(); const number = number_(text); return text.indexOf('%') >= 0 ? number / 100 : number; }
 function moneyRound_(value) { return Math.round((Number(value) || 0) * 100) / 100; }
 function roundUpHalf_(value) { return Math.ceil((Number(value) || 0) * 2) / 2; }
 function shippingFee_(method, itemCount, settings) {
