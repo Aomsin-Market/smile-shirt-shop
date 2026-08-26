@@ -5,7 +5,7 @@ const demoProducts = [
   {sku:"SS-003",name:"เสื้อเชิ้ตแขนสั้นคละแบบ",category:"เสื้อเชิ้ต",price:150,stock:1,status:"พร้อมขาย",mediaType:"รูปภาพเท่านั้น",imageUrl:"assets/shop-rack.jpeg",videoUrl:"",size:"ฟรีไซซ์",color:"คละสี",description:"เสื้อเชิ้ตคัดคุณภาพพร้อมส่ง เหมาะกับลุคสบาย ๆ ในทุกวัน"}
 ];
 let products = demoProducts;
-let settings = {bankName:"รอเพิ่มข้อมูลจริง",accountNumber:"xxx-x-xxxxx-x",accountName:"รอเพิ่มข้อมูลจริง",qrUrl:"",storeAddress:"ตลาดช่างชุ่ย ถนนสิรินธร แขวงบางพลัด เขตบางพลัด กรุงเทพมหานคร",routeVideoUrl:"",promoImageUrl:"",promoQualityText:"คัดคุณภาพทุกตัว",promoPriceText:"เริ่มต้น ฿120"};
+let settings = {bankName:"รอเพิ่มข้อมูลจริง",accountNumber:"xxx-x-xxxxx-x",accountName:"รอเพิ่มข้อมูลจริง",qrUrl:"",storeAddress:"ช่างชุ่ย ครีเอทีฟ พาร์ค ถนนสิรินธร แขวงบางพลัด เขตบางพลัด กรุงเทพมหานคร",routeVideoUrl:"",promoImageUrl:"",promoQualityText:"คัดคุณภาพทุกตัว",promoPriceText:"เริ่มต้น ฿120"};
 let cart = JSON.parse(localStorage.getItem("smile-shirt-cart") || "{}");
 let selectedProduct = null;
 const $ = (s) => document.querySelector(s);
