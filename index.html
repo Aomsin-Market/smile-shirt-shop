@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#fff8ec">
-  <meta name="description" content="Smile Shirt เสื้อผ้ามือสองคัดสภาพ สดใส มีสไตล์ และมีเพียงชิ้นเดียว">
-  <title>Smile Shirt | เสื้อผ้ามือสองคัดสภาพ</title>
+  <meta name="description" content="Smile Shirt เสื้อผ้ามือสองคัดคุณภาพ สดใส มีสไตล์ และมีเพียงชิ้นเดียว">
+  <title>Smile Shirt | เสื้อผ้ามือสองคัดคุณภาพ</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -27,13 +27,13 @@
       <div class="hero-copy">
         <p class="eyebrow">NEW FASHION DROP</p>
         <h1>หยิบลุคที่ใช่<br><span>ใส่แล้วเป็นคุณ</span></h1>
-        <p>เสื้อผ้ามือสองคัดสภาพ แต่ละชิ้นมีเรื่องราวและมีเพียงชิ้นเดียวในร้าน</p>
+        <p>เสื้อผ้ามือสองคัดคุณภาพ แต่ละชิ้นมีเรื่องราวและมีเพียงชิ้นเดียวในร้าน</p>
         <a class="primary-link" href="#products">เลือกสินค้าตอนนี้</a>
       </div>
       <div class="hero-media">
-        <img src="assets/shop-shirts.jpeg" alt="เสื้อเชิ้ตวินเทจจากร้าน Smile Shirt">
-        <span class="hero-chip chip-yellow">คัดสภาพทุกตัว</span>
-        <span class="hero-chip chip-mint">เริ่มต้น ฿120</span>
+        <img id="heroPromoImage" src="assets/shop-shirts.jpeg" alt="ภาพโปรโมชั่นจากร้าน Smile Shirt">
+        <span id="heroQualityChip" class="hero-chip chip-yellow">คัดคุณภาพทุกตัว</span>
+        <span id="heroPriceChip" class="hero-chip chip-mint">เริ่มต้น ฿120</span>
       </div>
     </section>
 
@@ -45,12 +45,28 @@
       <div id="productGrid" class="product-grid" aria-live="polite"></div>
     </section>
 
+    <section id="track-order" class="tracking-section">
+      <div class="tracking-intro">
+        <p class="eyebrow light">ORDER TRACKING</p>
+        <h2>ติดตามคำสั่งซื้อ</h2>
+        <p>กรอกหมายเลขออร์เดอร์และเบอร์โทรศัพท์เดียวกับที่ใช้สั่งซื้อ เพื่อตรวจสอบสถานะและเลขพัสดุ</p>
+      </div>
+      <form id="trackingForm" class="tracking-form">
+        <label>หมายเลขออร์เดอร์<input name="orderNumber" required placeholder="เช่น SS-20260826-0001" autocomplete="off"></label>
+        <label>เบอร์โทรศัพท์<input name="phone" required inputmode="tel" placeholder="08x-xxx-xxxx" autocomplete="tel"></label>
+        <button class="tracking-button" type="submit">ตรวจสอบสถานะ</button>
+      </form>
+      <div id="lastOrderNotice" class="last-order-notice" hidden></div>
+      <div id="trackingResult" class="tracking-result" aria-live="polite"></div>
+    </section>
+
     <section class="pickup-section">
       <div>
         <p class="eyebrow light">STORE PICKUP</p>
         <h2>รับสินค้าที่หน้าร้านได้</h2>
         <p id="storeAddress">ตลาดช่างชุ่ย ถนนสิรินธร แขวงบางพลัด เขตบางพลัด กรุงเทพมหานคร</p>
         <div class="shipping-tags"><span>ขนส่งเอกชน</span><span>ไปรษณีย์ไทย</span><span>รับหน้าร้าน</span></div>
+        <a class="line-add-button" href="https://lin.ee/TM8HN8I" target="_blank" rel="noopener noreferrer"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/th.png" alt="เพิ่มเพื่อน Smile Shirt ทาง LINE" height="36"></a>
       </div>
       <div id="routeVideoBox" class="route-video empty">
         <div><b>วิดีโอแนะนำทางมาร้าน</b><small>เพิ่มลิงก์ใน Google Sheets ได้ภายหลัง</small></div>
@@ -60,7 +76,7 @@
 
   <footer>
     <b>SMILE SHIRT</b>
-    <span>เสื้อผ้ามือสองคัดสภาพ • ตลาดช่างชุ่ย</span>
+    <span>เสื้อผ้ามือสองคัดคุณภาพ • ตลาดช่างชุ่ย</span>
   </footer>
 
   <div id="productModal" class="modal" aria-hidden="true">
@@ -129,13 +145,16 @@
         <h2>ส่งออร์เดอร์เรียบร้อย</h2>
         <p>ร้านจะตรวจสอบหลักฐานการชำระเงินของคุณ</p>
         <div class="order-number"><small>หมายเลขออร์เดอร์</small><strong id="successOrderNumber"></strong></div>
-        <p>กรุณาบันทึกหมายเลขนี้ไว้สำหรับติดตามและรับสินค้า</p>
-        <button class="action-button" data-close="checkout">เสร็จเรียบร้อย</button>
+        <div class="order-reminder"><b>สำคัญ: กรุณาบันทึกหมายเลขออร์เดอร์นี้ไว้</b><span>ต้องใช้คู่กับเบอร์โทรศัพท์ เพื่อติดตามสถานะและเลขพัสดุในภายหลัง</span></div>
+        <button id="copyOrderNumber" class="copy-order-button" type="button">คัดลอกหมายเลขออร์เดอร์</button>
+        <a class="action-button success-track-link" href="#track-order" data-track-order>ไปหน้าติดตามคำสั่งซื้อ</a>
+        <button class="secondary-button" data-close="checkout">ปิดหน้าต่าง</button>
       </div>
     </article>
   </div>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <a class="line-floating" href="https://lin.ee/RMw26Ly" target="_blank" rel="noopener noreferrer" aria-label="แชทกับ Smile Shirt ทาง LINE"><span>LINE</span><b>แชทกับร้าน</b></a>
   <script src="config.js"></script>
   <script src="app.js" defer></script>
 </body>
