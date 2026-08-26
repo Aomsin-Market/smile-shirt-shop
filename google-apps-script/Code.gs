@@ -148,7 +148,7 @@ function createOrder_(payload) {
       if (item.stock - item.quantity <= 0) productSheet.getRange(item.row, 6).setValue('หมด');
     });
     SpreadsheetApp.flush();
-    return { ok: true, orderNumber, subtotal, shippingFee, codFee, total, deposit, balance };
+    return { ok: true, orderNumber, subtotal, shippingFee, codFee, preRoundedTotal, roundingAdjustment, total, deposit, balance };
   } finally {
     lock.releaseLock();
   }
