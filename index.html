@@ -125,6 +125,7 @@
               <option value="รับหน้าร้าน">รับที่ร้าน Smile Shirt — ช่างชุ่ย ครีเอทีฟ พาร์ค</option>
             </select>
           </label>
+          <div id="checkoutSummary" class="checkout-summary" aria-live="polite"></div>
           <label>ที่อยู่จัดส่ง / หมายเหตุรับหน้าร้าน<textarea name="address" required rows="3" placeholder="กรอกที่อยู่ให้ครบ หรือระบุว่ารับหน้าร้าน"></textarea></label>
           <div class="payment-choice">
             <label><input type="radio" name="paymentMethod" value="เลขบัญชี" checked><span>เลขบัญชี</span></label>
@@ -135,6 +136,7 @@
             <input id="slipInput" name="slip" type="file" required accept="image/jpeg,image/png,image/webp,application/pdf">
             <span><b>แตะเพื่อเลือกไฟล์</b><small id="fileName">JPG, PNG, WEBP หรือ PDF ไม่เกิน 8 MB</small></span>
           </label>
+          <label class="terms-check"><input type="checkbox" name="acceptTerms" required><span><b>ฉันตรวจสอบและจะโอนตามยอดที่ระบบแจ้ง</b> ยอดมัดจำที่ต้องโอนจะปัดขึ้นเป็น .00 หรือ .50 บาท หากโอนเงินไม่ตรงตามจำนวน ทางร้านขอสงวนสิทธิ์ยกเลิกคำสั่งซื้อและปฏิเสธการคืนเงินทุกกรณี สำหรับขนส่งเอกชนและไปรษณีย์ไทย มีค่าจัดส่งตามจำนวนสินค้า (ขั้นต่ำ 60 บาท) และค่าบริการเก็บเงินปลายทาง 4% ของยอดสินค้าและค่าจัดส่ง</span></label>
           <label class="honeypot" aria-hidden="true">เว็บไซต์<input name="website" tabindex="-1" autocomplete="off"></label>
           <p id="formError" class="form-error" role="alert"></p>
           <button id="submitOrderButton" class="action-button" type="submit">ยืนยันและส่งหลักฐาน</button>
