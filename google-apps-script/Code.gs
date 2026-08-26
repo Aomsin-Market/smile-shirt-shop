@@ -74,7 +74,7 @@ function getSettings_() {
     routeVideoUrl: cleanUrl_(map['วิดีโอแนะนำทางมารับหน้าร้าน'] || ''),
     promoImageUrl: cleanUrl_(map['รูปภาพโปรโมชั่นหน้าแรก'] || ''),
     promoQualityText: map['ข้อความป้ายคุณภาพ'] || 'คัดคุณภาพทุกตัว',
-    promoPriceText: map['ข้อความป้ายราคาโปรโมชั่น'] || 'เริ่มต้น ฿120',
+    promoPriceText: map['ข้อความป้ายราคาโปรโมชั่น'] || '',
     shippingMinimum: number_(map['ค่าขนส่งขั้นต่ำ']) || 60,
     codRate: percent_(map['อัตราค่าบริการเก็บเงินปลายทาง']) || 0.04,
     shippingRates: getShippingRates_()
