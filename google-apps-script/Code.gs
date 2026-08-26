@@ -67,7 +67,6 @@ function getSettings_() {
     storeName: map['ชื่อร้าน'] || 'Smile Shirt',
     depositRate: 0.5,
     storeAddress: map['ที่อยู่รับหน้าร้าน'] || '',
-    lineId: map['LINE ID'] || '',
     bankName: map['ธนาคาร'] || 'รอเพิ่มข้อมูลจริง',
     accountName: map['ชื่อบัญชี'] || 'รอเพิ่มข้อมูลจริง',
     accountNumber: map['เลขบัญชี'] || 'รอเพิ่มข้อมูลจริง',
@@ -139,7 +138,7 @@ function createOrder_(payload) {
     const now = new Date();
 
     orderSheet.appendRow([
-      orderNumber, now, clean_(payload.customerName), clean_(payload.phone), clean_(payload.lineId),
+      orderNumber, now, clean_(payload.customerName), clean_(payload.phone), 'LINE ร้าน',
       clean_(payload.shippingMethod), clean_(payload.address), subtotal, shippingFee, total, deposit, balance,
       'รอตรวจสอบ', slipUrl, 'รอจัดเตรียม', '', 'ชำระผ่าน ' + clean_(payload.paymentMethod || 'ไม่ระบุ'), codFee
     ]);
