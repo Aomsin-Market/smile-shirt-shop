@@ -196,7 +196,7 @@ function validateText_(value, message, max) { const text = clean_(value); if (!t
 function number_(value) { return Number(String(value || '').replace(/[^0-9.-]/g, '')) || 0; }
 function percent_(value) { const text = String(value || '').trim(); const number = number_(text); return text.indexOf('%') >= 0 ? number / 100 : number; }
 function moneyRound_(value) { return Math.round((Number(value) || 0) * 100) / 100; }
-function roundUpHalf_(value) { return Math.ceil((Number(value) || 0) * 2) / 2; }
+function roundToHalf_(value) { return Math.round((Number(value) || 0) * 2) / 2; }
 function shippingFee_(method, itemCount, settings) {
   if (method === 'รับหน้าร้าน') return 0;
   const rates = settings.shippingRates || [];
