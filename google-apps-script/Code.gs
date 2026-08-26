@@ -178,10 +178,19 @@ function saveSlip_(slip, orderNumber) {
 function nextOrderNumber_() {
   const tz = 'Asia/Bangkok';
   const date = Utilities.formatDate(new Date(), tz, 'yyyyMMdd');
-  const props = PropertiesService.getScriptProperties();
-  const key = 'ORDER_COUNTER_' + date;
-  const next = Number(props.getProperty(key) || 0) + 1;
-  props.setProperty(key, String(next));
+  const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(ORDER_SHEET);
+  if (!sheet) throw new Error('ไม่พบแท็บออร์เดอร์');
+  const prefix = 'SS-' + date + '-';
+  const numbers = sheet.getLastRow() > 1
+    ? sheet.getRange(2, 1, sheet.getLastRow() - 1, 1).getDisplayValues().flat()
+    : [];
+  const latest = numbers.reduce((max, value) => {
+    const text = String(value || '').trim().toUpperCase();
+    if (!text.startsWith(prefix)) return max;
+    const sequence = Number(text.slice(prefix.length));
+    return Number.isInteger(sequence) ? Math.max(max, sequence) : max;
+  }, 0);
+  const next = latest + 1;
   return 'SS-' + date + '-' + String(next).padStart(4, '0');
 }
 
