@@ -56,6 +56,7 @@
         <label>เบอร์โทรศัพท์<input name="phone" required inputmode="tel" placeholder="08x-xxx-xxxx" autocomplete="tel"></label>
         <button class="tracking-button" type="submit">ตรวจสอบสถานะ</button>
       </form>
+      <div id="lastOrderNotice" class="last-order-notice" hidden></div>
       <div id="trackingResult" class="tracking-result" aria-live="polite"></div>
     </section>
 
@@ -144,7 +145,8 @@
         <h2>ส่งออร์เดอร์เรียบร้อย</h2>
         <p>ร้านจะตรวจสอบหลักฐานการชำระเงินของคุณ</p>
         <div class="order-number"><small>หมายเลขออร์เดอร์</small><strong id="successOrderNumber"></strong></div>
-        <p>กรุณาบันทึกหมายเลขนี้และใช้คู่กับเบอร์โทรศัพท์ เพื่อกลับมาตรวจสอบสถานะการจัดส่งและเลขพัสดุ</p>
+        <div class="order-reminder"><b>สำคัญ: กรุณาบันทึกหมายเลขออร์เดอร์นี้ไว้</b><span>ต้องใช้คู่กับเบอร์โทรศัพท์ เพื่อติดตามสถานะและเลขพัสดุในภายหลัง</span></div>
+        <button id="copyOrderNumber" class="copy-order-button" type="button">คัดลอกหมายเลขออร์เดอร์</button>
         <a class="action-button success-track-link" href="#track-order" data-track-order>ไปหน้าติดตามคำสั่งซื้อ</a>
         <button class="secondary-button" data-close="checkout">ปิดหน้าต่าง</button>
       </div>
