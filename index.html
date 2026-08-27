@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260827-11">
+  <link rel="stylesheet" href="styles.css?v=20260827-12">
 </head>
 <body>
   <header class="topbar">
@@ -132,6 +132,20 @@
           </label>
           <div id="checkoutSummary" class="checkout-summary" aria-live="polite"></div>
           <label>ที่อยู่จัดส่ง / หมายเหตุรับหน้าร้าน<textarea name="address" required rows="3" placeholder="กรอกที่อยู่ให้ครบ หรือระบุว่ารับหน้าร้าน"></textarea></label>
+          <section class="purchase-terms" aria-labelledby="purchaseTermsTitle">
+            <div class="purchase-terms-heading">
+              <span aria-hidden="true">🛍️</span>
+              <div><small>โปรดอ่านก่อนชำระเงิน</small><h3 id="purchaseTermsTitle">เงื่อนไขการสั่งซื้อสินค้า</h3></div>
+            </div>
+            <p>สินค้าของทางร้านเป็น <b>สินค้ามือสอง</b> จึงอาจมีร่องรอยการใช้งานตามสภาพ โดยทางร้านจะตรวจสอบและแจ้งตำหนิที่พบก่อนจำหน่าย</p>
+            <ul>
+              <li><span aria-hidden="true">📏</span><div><b>ตรวจสอบก่อนสั่งซื้อ</b> กรุณาตรวจสอบขนาด สภาพสินค้า รูปภาพ และรายละเอียดให้เรียบร้อย</div></li>
+              <li><span aria-hidden="true">🎨</span><div><b>สีของสินค้า</b> อาจแตกต่างจากภาพเล็กน้อย ขึ้นอยู่กับแสงขณะถ่ายและการแสดงผลของแต่ละหน้าจอ</div></li>
+              <li><span aria-hidden="true">❌</span><div><b>การเปลี่ยนหรือคืนสินค้า</b> ทางร้านขอสงวนสิทธิ์ไม่รับเปลี่ยนหรือคืนสินค้า กรณีเลือกขนาดไม่พอดี เปลี่ยนใจ หรือตำหนิและสภาพที่ทางร้านแจ้งไว้แล้ว</div></li>
+              <li><span aria-hidden="true">✅</span><div><b>กรณีสินค้าไม่ตรงกับออร์เดอร์</b> หากได้รับสินค้าผิดรายการ หรือสินค้าไม่ตรงกับรายละเอียดที่แจ้งไว้ กรุณาติดต่อร้านพร้อมหลักฐาน เพื่อให้ทางร้านตรวจสอบและดำเนินการตามความเหมาะสม</div></li>
+            </ul>
+            <label class="purchase-terms-accept"><input type="checkbox" name="acceptPurchaseTerms" required><span><b>ฉันได้ตรวจสอบรายละเอียดและยอมรับเงื่อนไขการสั่งซื้อแล้ว</b></span></label>
+          </section>
           <div class="payment-choice">
             <label><input type="radio" name="paymentMethod" value="เลขบัญชี" checked><span>เลขบัญชี</span></label>
             <label><input type="radio" name="paymentMethod" value="QR Code"><span>QR Code</span></label>
@@ -162,7 +176,7 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <a class="line-floating" href="https://lin.ee/RMw26Ly" target="_blank" rel="noopener noreferrer" aria-label="แชทกับ Smile Shirt ทาง LINE"><span>LINE</span><b>แชทกับร้าน</b></a>
-  <script src="config.js?v=20260827-11"></script>
-  <script src="app.js?v=20260827-11" defer></script>
+  <script src="config.js?v=20260827-12"></script>
+  <script src="app.js?v=20260827-12" defer></script>
 </body>
 </html>
