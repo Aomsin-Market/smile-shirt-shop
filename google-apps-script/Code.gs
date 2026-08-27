@@ -5,6 +5,8 @@ const ITEM_SHEET = 'รายการในออร์เดอร์';
 const SETTINGS_SHEET = 'ตั้งค่าร้าน';
 const SHIPPING_RATE_SHEET = 'เรทค่าจัดส่ง';
 const MAX_SLIP_BYTES = 8 * 1024 * 1024;
+const TERMS_VERSION = 'SS-TERMS-20260827-01';
+const TERMS_TEXT = 'สินค้าเป็นสินค้ามือสองและอาจมีร่องรอยการใช้งานตามสภาพ ลูกค้าต้องตรวจสอบขนาด สภาพสินค้า รูปภาพ และรายละเอียดก่อนสั่งซื้อ สีสินค้าอาจแตกต่างจากภาพเล็กน้อย ทางร้านไม่รับเปลี่ยนหรือคืนสินค้าในกรณีเลือกขนาดไม่พอดี เปลี่ยนใจ หรือตำหนิและสภาพที่แจ้งไว้แล้ว หากได้รับสินค้าผิดรายการหรือไม่ตรงกับรายละเอียด กรุณาติดต่อร้านพร้อมหลักฐาน นอกจากนี้ลูกค้าต้องโอนตามยอดที่ระบบแจ้งและยอมรับเงื่อนไขค่าจัดส่งกับค่าบริการเก็บเงินปลายทางที่แสดงก่อนส่งออร์เดอร์';
 
 function doGet(e) {
   try {
@@ -97,6 +99,7 @@ function createOrder_(payload) {
   validateText_(payload.phone, 'กรุณากรอกเบอร์โทร', 30);
   validateText_(payload.shippingMethod, 'กรุณาเลือกวิธีรับสินค้า', 50);
   validateText_(payload.address, 'กรุณากรอกที่อยู่หรือหมายเหตุรับหน้าร้าน', 500);
+  if (payload.termsAccepted !== true || payload.paymentTermsAccepted !== true) throw new Error('กรุณาอ่านและยอมรับเงื่อนไขก่อนส่งออร์เดอร์');
   if (!Array.isArray(payload.items) || !payload.items.length || payload.items.length > 30) throw new Error('ไม่มีสินค้าในออร์เดอร์');
   if (!payload.slip || !payload.slip.data) throw new Error('กรุณาแนบสลิป');
 
@@ -130,8 +133,10 @@ function createOrder_(payload) {
     const itemCount = cleanItems.reduce((sum, item) => sum + item.quantity, 0);
     const shippingFee = shippingFee_(payload.shippingMethod, itemCount, settings);
     const codFee = payload.shippingMethod === 'รับหน้าร้าน' ? 0 : moneyRound_((subtotal + shippingFee) * settings.codRate);
-    const total = moneyRound_(subtotal + shippingFee + codFee);
-    const deposit = roundUpHalf_(total * 0.5);
+    const preRoundedTotal = moneyRound_(subtotal + shippingFee + codFee);
+    const total = roundToHalf_(preRoundedTotal);
+    const roundingAdjustment = moneyRound_(total - preRoundedTotal);
+    const deposit = moneyRound_(total * 0.5);
     const balance = moneyRound_(total - deposit);
     const orderNumber = nextOrderNumber_();
     const slipUrl = saveSlip_(payload.slip, orderNumber);
@@ -140,7 +145,8 @@ function createOrder_(payload) {
     orderSheet.appendRow([
       orderNumber, now, clean_(payload.customerName), clean_(payload.phone), 'LINE ร้าน',
       clean_(payload.shippingMethod), clean_(payload.address), subtotal, shippingFee, total, deposit, balance,
-      'รอตรวจสอบ', slipUrl, 'รอจัดเตรียม', '', 'ชำระผ่าน ' + clean_(payload.paymentMethod || 'ไม่ระบุ'), codFee
+      'รอตรวจสอบ', slipUrl, 'รอจัดเตรียม', '', 'ชำระผ่าน ' + clean_(payload.paymentMethod || 'ไม่ระบุ'), codFee,
+      'ยอมรับแล้ว', TERMS_VERSION, now, TERMS_TEXT
     ]);
     cleanItems.forEach(item => {
       itemSheet.appendRow([orderNumber, item.sku, item.name, item.quantity, item.price, item.price * item.quantity, '']);
